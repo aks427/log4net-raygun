@@ -39,7 +39,7 @@ namespace log4net.Raygun
 
                 raygunMessageBuilder.SetHttpDetails(httpContext.Instance, messageOptions);
             }
-
+            
             raygunMessageBuilder
                 .SetExceptionDetails(exception)
                 .SetClientDetails()
@@ -47,7 +47,8 @@ namespace log4net.Raygun
                 .SetEnvironmentDetails()
                 .SetMachineName(Environment.MachineName)
                 .SetVersion(applicationAssembly != null ? applicationAssembly.GetName().Version.ToString() : null)
-                .SetUserCustomData(FilterRenderedMessageInUserCustomData(userCustomData, renderedMessageFilter));
+                .SetUserCustomData(FilterRenderedMessageInUserCustomData(userCustomData, renderedMessageFilter))
+                .SetUser(new RaygunIdentifierMessage((loggingEvent.Properties[RaygunAppenderBase.PropertyKeys.Identifier] ?? null) as string));
 
             var raygunMessage = raygunMessageBuilder.Build();
 

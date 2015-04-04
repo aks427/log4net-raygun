@@ -195,6 +195,7 @@ namespace log4net.Raygun.Core
         public static class PropertyKeys
         {
             public const string Tags = "log4net.Raygun.Tags";
+            public const string Identifier = "log4net.Raygun.Identifier";
         }
     }
 }
